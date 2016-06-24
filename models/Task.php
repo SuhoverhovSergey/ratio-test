@@ -32,11 +32,11 @@ class Task extends ActiveRecord
         return 'task';
     }
 
-    public static function getTaskForProcessing($retry)
+    public static function getTaskForProcessing($maxRetry)
     {
         return Task::find()
             ->where(['status' => 0])
-            ->andWhere(['<', 'retries', $retry])
+            ->andWhere(['<', 'retries', $maxRetry])
             ->andWhere(['or',
                 ['is', 'deffer', new Expression('null')],
                 ['<=', 'deffer', date('Y-m-d H:i:s')],
