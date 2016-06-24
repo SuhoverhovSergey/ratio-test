@@ -6,6 +6,6 @@ class Integration extends AbstractTask
 {
     public static function process($data)
     {
-
+        return [];
     }
 }

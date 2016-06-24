@@ -6,6 +6,6 @@ class Message extends AbstractTask
 {
     public static function sms($data)
     {
-
+        return [];
     }
 }
