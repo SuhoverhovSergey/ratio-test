@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\db\Expression;
 use yii\db\ActiveRecord;
 
 /**
@@ -29,6 +30,19 @@ class Task extends ActiveRecord
     public static function tableName()
     {
         return 'task';
+    }
+
+    public static function getTaskForProcessing($retry)
+    {
+        return Task::find()
+            ->where(['status' => 0])
+            ->andWhere(['<', 'retries', $retry])
+            ->andWhere(['or',
+                ['is', 'deffer', new Expression('null')],
+                ['<=', 'deffer', date('Y-m-d H:i:s')],
+            ])
+            ->orderBy('deffer ASC, created ASC')
+            ->limit(1)->one();
     }
 
     /**
