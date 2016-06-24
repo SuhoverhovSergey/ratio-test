@@ -4,8 +4,8 @@ namespace Plp\Task;
 
 class Domain extends AbstractTask
 {
-    public static function addZone($data)
+    public static function addzone($data)
     {
-
+        return;
     }
 }

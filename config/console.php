@@ -10,6 +10,9 @@ $config = [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'app\commands',
+    'aliases' => [
+        'Plp' => dirname(__DIR__) . '/Plp',
+    ],
     'components' => [
         'cache' => [
             'class' => 'yii\caching\FileCache',
