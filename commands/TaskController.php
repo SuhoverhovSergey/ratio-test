@@ -24,12 +24,13 @@ class TaskController extends Controller
             $task = Task::getTaskForProcessing(self::TASK_RETRY_LIMIT);
 
             if ($task) {
+                $date = date('Y-m-d H:i:s');
                 try {
                     $result = call_user_func(
                         ['\Plp\Task\\' . ucfirst($task->task), $task->action], Json::decode($task->data)
                     );
                     $task->result = Json::encode($result);
-                    $task->finished = date('Y-m-d H:i:s');
+                    $task->finished = $date;
                     $task->status = 1;
                 } catch (UserException $e) {
                     $task->result = $e->getMessage();
@@ -42,6 +43,8 @@ class TaskController extends Controller
                 }
                 $task->retries++;
                 $task->save();
+
+                $this->stdout("[$date] #$task->id $task->task -> $task->action : $task->result\n");
             }
         }
 
