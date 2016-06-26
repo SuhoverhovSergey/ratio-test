@@ -8,6 +8,7 @@ Yii 2 Test
 
 ```
 composer install
+php yii migrate/up
 ```
 
 Добавить локальный файл конфигурации `config/db-local.php` и настроить соединение с БД.
