@@ -28,3 +28,4 @@ phpunit.phar
 
 # config
 config/db-local.php
+tests/codeception/config/config-local.php

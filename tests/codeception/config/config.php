@@ -2,7 +2,7 @@
 /**
  * Application configuration shared by all test types
  */
-return [
+$config = [
     'language' => 'en-US',
     'controllerMap' => [
         'fixture' => [
@@ -24,3 +24,8 @@ return [
         ],
     ],
 ];
+
+return yii\helpers\ArrayHelper::merge(
+    $config,
+    require(__DIR__ . '/config-local.php')
+);
