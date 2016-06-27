@@ -6,6 +6,6 @@ class Account extends AbstractTask
 {
     public static function bill($data)
     {
-        return [];
+        throw new FatalException('Fatal exception error');
     }
 }

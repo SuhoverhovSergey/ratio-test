@@ -6,6 +6,6 @@ class Domain extends AbstractTask
 {
     public static function addzone($data)
     {
-        return [];
+        return ['zone' => $data['domain']];
     }
 }
