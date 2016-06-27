@@ -12,6 +12,9 @@ $config = [
             'namespace' => 'tests\codeception\fixtures',
         ],
     ],
+    'aliases' => [
+        'Plp' => dirname(dirname(dirname(__DIR__))) . '/Plp',
+    ],
     'components' => [
         'db' => [
             'dsn' => 'mysql:host=localhost;dbname=yii2_basic_tests',
