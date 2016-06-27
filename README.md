@@ -17,9 +17,25 @@ php yii migrate/up
 
 ```php
 return [
-    'dsn' => 'mysql:host=localhost;dbname=test',
+    'dsn' => 'mysql:host=localhost;dbname=ratio-test',
     'username' => 'root',
     'password' => 'root',
+];
+```
+
+Для тестов добавить локальный файл конфигурации `tests/codeception/config/config-local.php` и настроить соединение с БД.
+
+Пример содержимого файла:
+
+```php
+return [
+    'components' => [
+        'db' => [
+            'dsn' => 'mysql:host=localhost;dbname=ratio-test-tests',
+            'username' => 'root',
+            'password' => 'root',
+        ],
+    ],
 ];
 ```
 
