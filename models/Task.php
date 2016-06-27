@@ -38,6 +38,10 @@ class Task extends ActiveRecord
         return 'task';
     }
 
+    /**
+     * @param $maxRetry
+     * @return array|null|Task
+     */
     public static function getTaskForProcessing($maxRetry)
     {
         return Task::find()
@@ -87,13 +91,12 @@ class Task extends ActiveRecord
 
     public function run()
     {
-        $date = date('Y-m-d H:i:s');
         try {
             $result = call_user_func(
                 ['\Plp\Task\\' . ucfirst($this->task), $this->action], Json::decode($this->data)
             );
             $this->result = Json::encode($result);
-            $this->finished = $date;
+            $this->finished = date('Y-m-d H:i:s');
             $this->status = 1;
         } catch (UserException $e) {
             $this->result = $e->getMessage();
